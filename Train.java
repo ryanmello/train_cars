@@ -36,16 +36,19 @@ public class Train{
     Car current = this.front, prev = null;
 
     if(current != null && current.factory.equalsIgnoreCase(factoryName)){
-      //
-      return;
+      prev = front.next;
+      current = prev;
     }
 
     while(current != null && current.factory != factoryName){
-      //
-      //
+      current = current.next;
     }
 
-    prev.next = current.next;
+    // if(){
+      
+    // }
+
+    //prev.next = current.next;
     detach(factoryName);
   }
 
@@ -65,6 +68,15 @@ public class Train{
 
   public void search(String factoryName){
     Car current = this.front;
+    if(current == null){
+      return;
+    }
+    while(current != null){
+      if(current.factory.equalsIgnoreCase(factoryName)){
+        System.out.println("The material in the car is " + current.material);
+      }
+      current = current.next;
+    }
   }
 
   public List<String> getCars(String factoryName){
@@ -72,8 +84,10 @@ public class Train{
     Car current = this.front;
     while(current.next != null){
       if(current.next.factory.equalsIgnoreCase(factoryName)){
-        //
+        
+        
       }
+      current = current.next;
     }
     return materials;
   }
@@ -81,7 +95,6 @@ public class Train{
   public void displayTrainCars(){
     sort();
     Car current = this.front;
-
     if(this.front == null){
       System.out.println("\nThe train is empty!\n");
       return;
@@ -95,15 +108,14 @@ public class Train{
   public void merge(String update){
     Scanner fileReader = null;
     String[] info = null;
-    String displayNew = null;
-    
     try {
       fileReader = new Scanner(new File(update));
     } catch (FileNotFoundException e){
       System.out.println("File was not found");
     }
     while(fileReader.hasNextLine()){
-      //
+      info = fileReader.nextLine().split(",");
+      attach(info[0], Integer.valueOf(info[1]), info[2]);
     }
     System.out.println();
     sort();
@@ -113,7 +125,6 @@ public class Train{
     Car current = this.front, index = null;
     int temp;
     String tempFactory, tempMaterial;
-
     if(this.front == null){
       return;
     } else {

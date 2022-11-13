@@ -64,7 +64,6 @@ public class Main {
     String name = scan.nextLine();
     System.out.println();
     train.detach(name);
-    
   }
 
   public static void createCar(){
@@ -77,10 +76,8 @@ public class Main {
     int stopInt = Integer.parseInt(stop);
     System.out.println("\nPlease enter the material name: ");
     material = scan.nextLine();
-
     System.out.println("\nAdding a new car - " +factory+" "+stop+" "+material+"\n");
     train.attach(factory, stopInt, material);
-    
   }
 
   public static void quit(){
